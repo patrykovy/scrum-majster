@@ -10,9 +10,6 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
     <Container>
-      <div>
-        <h2 className="text-center">Scrum Majster</h2>
-      </div>
       <Calculator />
     </Container>
   </React.StrictMode>
