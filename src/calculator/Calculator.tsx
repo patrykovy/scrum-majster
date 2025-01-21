@@ -6,6 +6,7 @@ import DevTeamSetup from './DevTeamSetup'
 import Result from './Result'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
+import Examples from "./Examples";
 
 const Calculator: React.FC = () => {
   const [state, stateManager] = useCalculatorStateManager()
@@ -20,6 +21,9 @@ const Calculator: React.FC = () => {
         <Col sm={4}>
           <Result state={state} stateManager={stateManager} />
         </Col>
+      </Row>
+      <Row>
+        <Examples />
       </Row>
     </Container>
   )
