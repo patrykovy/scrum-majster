@@ -17,43 +17,44 @@ const Result: React.FC<{
     stateManager.resetDefaults()
   }, [stateManager])
 
-  if (state.devTeam.fullTimeDevs < 1 && state.devTeam.halfTimeDevs < 1)
-    return null
+  if (state.devTeam.length < 1) return null
 
   return (
     <div>
       <h6>Result</h6>
-      <Row>
-        <Col>
-          <Row>
-            <Col>
-              <Form.Group className="input-group-sm">
-                <Form.Label className="small">Man Days</Form.Label>
-                <InputGroup className="input-group-sm">
-                  <Form.Control readOnly value={manDays.toFixed(2)} />
-                  <InputGroup.Text className="small">MD</InputGroup.Text>
-                </InputGroup>
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group className="input-group-sm">
-                <Form.Label className="small">Actual Capacity</Form.Label>
-                <InputGroup className="input-group-sm">
-                  <Form.Control readOnly value={actualCapacity.toFixed(2)} />
-                  <InputGroup.Text className="small">SP</InputGroup.Text>
-                </InputGroup>
-              </Form.Group>
-            </Col>
-          </Row>
-        </Col>
-        <Col></Col>
-        <Col></Col>
-        <Col className="d-flex justify-content-end align-items-end">
-          <Button variant="secondary btn-sm" onClick={onReset}>
-            Reset
-          </Button>
-        </Col>
-      </Row>
+      <div className="d-flex flex-column gap-3">
+        <Row>
+          <Col>
+            <Row>
+              <Col>
+                <Form.Group className="input-group-sm">
+                  <Form.Label className="small">Man Days</Form.Label>
+                  <InputGroup className="input-group-sm">
+                    <Form.Control readOnly value={manDays} />
+                    <InputGroup.Text className="small">MD</InputGroup.Text>
+                  </InputGroup>
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Group className="input-group-sm">
+                  <Form.Label className="small">Actual Capacity</Form.Label>
+                  <InputGroup className="input-group-sm">
+                    <Form.Control readOnly value={actualCapacity} />
+                    <InputGroup.Text className="small">SP</InputGroup.Text>
+                  </InputGroup>
+                </Form.Group>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Button variant="secondary btn-sm" onClick={onReset}>
+              Reset
+            </Button>
+          </Col>
+        </Row>
+      </div>
     </div>
   )
 }

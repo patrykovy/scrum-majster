@@ -3,8 +3,9 @@ import Container from 'react-bootstrap/Container'
 import { useCalculatorStateManager } from './CalculatorState'
 import SprintSetup from './SprintSetup'
 import DevTeamSetup from './DevTeamSetup'
-import DaysOffSetup from './DaysOffSetup'
 import Result from './Result'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
 
 const Calculator: React.FC = () => {
   const [state, stateManager] = useCalculatorStateManager()
@@ -12,11 +13,14 @@ const Calculator: React.FC = () => {
   return (
     <Container className="d-flex flex-column bg-light p-4 row-gap-4">
       <SprintSetup state={state} stateManager={stateManager} />
-      <div className="d-flex justify-content-between">
-        <DevTeamSetup state={state} stateManager={stateManager} />
-        <DaysOffSetup state={state} stateManager={stateManager} />
-      </div>
-      <Result state={state} stateManager={stateManager} />
+      <Row>
+        <Col sm={8}>
+          <DevTeamSetup state={state} stateManager={stateManager} />
+        </Col>
+        <Col sm={4}>
+          <Result state={state} stateManager={stateManager} />
+        </Col>
+      </Row>
     </Container>
   )
 }
