@@ -34,7 +34,7 @@ export function calculateManDays(calculatorState: CalculatorState): number {
     ? halfTime.daysOff + bankHolidays * halfTime.devs
     : 0
 
-  return Math.floor(initialMD - fullTimeSubtract - halfTimeSubtract)
+  return initialMD - fullTimeSubtract - halfTimeSubtract
 }
 
 export function calculateCapacity(calculatorState: CalculatorState): number {

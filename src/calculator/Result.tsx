@@ -30,7 +30,7 @@ const Result: React.FC<{
                 <Form.Group className="input-group-sm">
                   <Form.Label className="small">Man Days</Form.Label>
                   <InputGroup className="input-group-sm">
-                    <Form.Control readOnly value={manDays} />
+                    <Form.Control readOnly value={manDays.toFixed(2)} />
                     <InputGroup.Text className="small">MD</InputGroup.Text>
                   </InputGroup>
                 </Form.Group>
