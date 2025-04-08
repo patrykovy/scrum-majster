@@ -42,30 +42,27 @@ const Examples: React.FC = () => {
             <dd className="col-sm-9">10 dni</dd>
             <dt className="col-sm-3">Team</dt>
             <dd className="col-sm-9">
-              Michal, Mirek, Tomek, Rafal, Kuba, ½ Kacpra
+              Michal, Mirek, Tomek, ½ Kuba, ½ Kacpra
             </dd>
             <dt className="col-sm-3">Initial Capacity</dt>
-            <dd className="col-sm-9">20 SP</dd>
+            <dd className="col-sm-9">18 SP</dd>
             <dt className="col-sm-3">Capacity Per Day</dt>
             <dd className="col-sm-9">
-              <p>20 SP na 10 dni, 2 SP na dzień</p>
+              <p>18 SP na 10 dni, 1.8 SP na dzień</p>
               <p>
-                2 SP / 4.5 osoby = 0.44 SP na dzień ~ 0,5 SP per developer na
+                1.8 SP / 4 osoby = 0.45 SP per developer na
                 dzień (full-time){' '}
               </p>
-              <p>Kacper: ~0.25 SP</p>
+              <p>Kacper: ~0.225 SP</p>
+              <p>Kuba: ~0.225 SP</p>
             </dd>
             <dt className="col-sm-3 text-truncate">Example</dt>
             <dd className="col-sm-9">
               <p>
-                Kacper bierze 2 dni wolnego - odejmujemy mu za to 1 pkt więc
-                capacity = 19 SP
+                Kacper bierze 2 dni wolnego - odejmujemy mu za to 0.45 pkt więc
+                capacity = 17.55 SP
               </p>
-              <p>
-                * Jeżeli 0.5 SP to jest dzienny effort deva to kacper robi
-                troche mniej niz to, ale bez sensu odejmować mu 0.75
-              </p>
-              <p>Szacując capacity zawsze lepiej zaniżyć.</p>
+              <p>Zaniżamy do 17 SP (Szacując capacity zawsze lepiej zaniżyć.)</p>
             </dd>
           </dl>
         </Accordion.Body>

@@ -36,7 +36,7 @@ export type CalculatorStateManager = {
 
 const INITIAL_STATE: CalculatorState = {
   sprintDays: 10,
-  initialCapacity: 20,
+  initialCapacity: 18,
   bankHolidays: 0,
   devTeam: [
     {
@@ -56,7 +56,7 @@ const INITIAL_STATE: CalculatorState = {
     {
       id: 3,
       name: 'Jakub',
-      job: Job.FULL_TIME,
+      job: Job.HALF_TIME,
       daysOff: 0,
       capacityIncluded: true,
     },
