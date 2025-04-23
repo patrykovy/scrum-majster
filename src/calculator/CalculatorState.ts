@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, {useMemo} from 'react'
 
 export type DevTeam = {
   fullTimeDevs: number
@@ -16,6 +16,7 @@ export type Dev = {
   id: number
   name: string
   job: Job
+  mdJobOverride?: Job
   daysOff: number
   capacityIncluded: boolean
 }
@@ -57,6 +58,7 @@ const INITIAL_STATE: CalculatorState = {
       id: 3,
       name: 'Jakub',
       job: Job.HALF_TIME,
+      mdJobOverride: Job.FULL_TIME,
       daysOff: 0,
       capacityIncluded: true,
     },
@@ -95,7 +97,7 @@ export function useCalculatorStateManager(): [
       updateState: (
         factory: (currentState: CalculatorState) => CalculatorState
       ) => {
-        setState((prev) => factory(prev))
+        setState((prev: CalculatorState) => factory(prev))
       },
       resetDefaults: () => {
         setState(INITIAL_STATE)

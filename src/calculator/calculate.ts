@@ -1,27 +1,27 @@
-import { CalculatorState, Job } from './CalculatorState'
+import {CalculatorState, Job} from './CalculatorState'
 
 export function calculateManDays(calculatorState: CalculatorState): number {
-  const { bankHolidays, devTeam, sprintDays } = calculatorState
+  const {bankHolidays, devTeam, sprintDays} = calculatorState
   const fullTime = devTeam
-    .filter(({ job }) => job === Job.FULL_TIME)
+    .filter(({job, mdJobOverride}) => mdJobOverride ? mdJobOverride === Job.FULL_TIME : job === Job.FULL_TIME)
     .reduce(
       (acc, dev) => ({
         ...acc,
         devs: acc.devs + 1,
         daysOff: acc.daysOff + dev.daysOff,
       }),
-      { devs: 0, daysOff: 0 }
+      {devs: 0, daysOff: 0}
     )
 
   const halfTime = devTeam
-    .filter(({ job }) => job === Job.HALF_TIME)
+    .filter(({job, mdJobOverride}) => mdJobOverride ? mdJobOverride === Job.HALF_TIME : job === Job.HALF_TIME)
     .reduce(
       (acc, dev) => ({
         ...acc,
         devs: acc.devs + 0.5,
         daysOff: acc.daysOff + dev.daysOff * 0.5,
       }),
-      { devs: 0, daysOff: 0 }
+      {devs: 0, daysOff: 0}
     )
 
   const initialMD = (fullTime.devs + halfTime.devs) * sprintDays
@@ -38,10 +38,10 @@ export function calculateManDays(calculatorState: CalculatorState): number {
 }
 
 export function calculateCapacity(calculatorState: CalculatorState): number {
-  const { bankHolidays, devTeam, sprintDays, initialCapacity } = calculatorState
+  const {bankHolidays, devTeam, sprintDays, initialCapacity} = calculatorState
   const fullTime = devTeam
     .filter(
-      ({ job, capacityIncluded }) => job === Job.FULL_TIME && capacityIncluded
+      ({job, capacityIncluded}) => job === Job.FULL_TIME && capacityIncluded
     )
     .reduce(
       (acc, dev) => ({
@@ -49,12 +49,12 @@ export function calculateCapacity(calculatorState: CalculatorState): number {
         devs: acc.devs + 1,
         daysOff: acc.daysOff + dev.daysOff,
       }),
-      { devs: 0, daysOff: 0 }
+      {devs: 0, daysOff: 0}
     )
 
   const halfTime = devTeam
     .filter(
-      ({ job, capacityIncluded }) => job === Job.HALF_TIME && capacityIncluded
+      ({job, capacityIncluded}) => job === Job.HALF_TIME && capacityIncluded
     )
     .reduce(
       (acc, dev) => ({
@@ -62,7 +62,7 @@ export function calculateCapacity(calculatorState: CalculatorState): number {
         devs: acc.devs + 0.5,
         daysOff: acc.daysOff + dev.daysOff * 0.5,
       }),
-      { devs: 0, daysOff: 0 }
+      {devs: 0, daysOff: 0}
     )
 
   const capacityPerTeamDay = initialCapacity / sprintDays
@@ -75,7 +75,7 @@ export function calculateCapacity(calculatorState: CalculatorState): number {
 
   const halfTimeSubtract = halfTime.devs
     ? (halfTime.daysOff + bankHolidays * halfTime.devs) *
-      capacityPerHalfTimeDevDay
+    capacityPerHalfTimeDevDay
     : 0
 
   return Math.floor(initialCapacity - fullTimeSubtract - halfTimeSubtract)
